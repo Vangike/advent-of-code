@@ -9,5 +9,5 @@ Each day is located in its folder in the Days sub folder.
 
 Running an individual day through
 ```
-go run main.go <Day#>
+go run main.go <Day#> <Part>
 ```
