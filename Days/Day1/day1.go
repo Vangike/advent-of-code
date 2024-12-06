@@ -89,22 +89,42 @@ func part1() {
 func part2() {
 	file := input()
 	slice1, slice2 := sortedArray(file)
-
 	score := 0
 
-	for _, element := range slice1 {
-		occurence := 0
-		ind := 0
+	// Create a hashmap for first array
+	// [element] : [occurence in 1st array] [occurence in 2nd array]
+	hashmap := make(map[int][2]int)
 
-		for ind < len(slice2) && element < slice2[ind] {
-			if element == slice2[ind] {
-				occurence++
-			}
-			ind++
+	// init the hashmap with occurence in 1st array
+	for _, element := range slice1 {
+		
+		value, exists := hashmap[element]
+		if(exists) {
+			value[0]++;
+			hashmap[element] = value
+		} else {
+			hashmap[element] = [2]int{1,0}
 		}
 
-		score += occurence * element
+	}
 
+	// Go through second array
+	// if value exist, up the occurence count
+	for _, element := range slice2 {
+
+		value, exists := hashmap[element]
+		if(exists) {
+			value[1]++;
+			hashmap[element] = value
+		}
+	}
+
+	// Go through hashmap
+	// If the element has an occurence in the 2nd array, calc the score
+	for key, value := range hashmap {
+		if value[1] != 0 {
+			score += key * value[1]
+		}
 	}
 
 	fmt.Println(score)
