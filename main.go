@@ -9,12 +9,14 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Printf("Specify a day to run - i.e. main.go Day1")
+	if len(os.Args) < 3 {
+		fmt.Printf("Usage: go run main.go <day> <part>")
+		fmt.Printf("Example: go run main.go Day1 2")
 		return
 	}
 
 	dayName := os.Args[1]
+	part := os.Args[2]
 
 	funcMap := map[string]interface{} {
 		"Day1": Day1.Run,
@@ -22,7 +24,8 @@ func main() {
 	}
 
 	if fn, exists := funcMap[dayName]; exists {
-		reflect.ValueOf(fn).Call(nil)
+		reflectArgs := []reflect.Value{reflect.ValueOf(part)}
+		reflect.ValueOf(fn).Call(reflectArgs)
 	} else {
 		fmt.Printf("Function %s not found\n", dayName)
 	}
