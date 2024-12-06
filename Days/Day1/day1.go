@@ -123,7 +123,7 @@ func part2() {
 	// If the element has an occurence in the 2nd array, calc the score
 	for key, value := range hashmap {
 		if value[1] != 0 {
-			score += key * value[1]
+			score += key * value[0] * value[1]
 		}
 	}
 
