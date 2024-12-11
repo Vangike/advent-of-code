@@ -3,6 +3,7 @@ package Day2
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -65,7 +66,50 @@ func part1() {
 	file := input()
 	arrayValue := twoDArray(file)
 
-	fmt.Print(arrayValue)
+	score := 0
+
+	for _, arr := range arrayValue {
+		if(increase(arr) || decrease(arr)) {
+			if(absolute(arr)) {
+				score++;
+			}
+		}
+	}
+
+	fmt.Print(score)
+}
+
+func increase(array []int) bool {
+	for index := 0; index < len(array)-1; index++ {
+		if array[index] > array[index+1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func decrease(array []int) bool {
+	for index := 0; index < len(array)-1; index++ {
+		if array[index] < array[index+1] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func absolute(array []int) bool {
+
+	for index := 0; index < len(array)-1; index++ {
+		value := math.Abs(float64(array[index] - array[index+1]))
+
+		if (value > 3 || value == 0) {
+			return false
+		}
+	}
+
+	return true
 }
 
 // ----------------
