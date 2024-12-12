@@ -113,8 +113,129 @@ func absolute(array []int) bool {
 }
 
 // ----------------
-// Part 2
+// Part 2 UNRESOLVED
 // ----------------
 func part2() {
+	file := input()
+	arrayValue := twoDArray(file)
+
+	score := 0
+
+	failSafe := new(int)
+	*failSafe = 1
+
+	for _, arr := range arrayValue {
+
+		incArr, incResult := increaseF(arr, failSafe) 
+
+		fmt.Print("INCREASE \n")
+		if(incResult) {
+			fmt.Print(incArr)
+			fmt.Print(*failSafe)
+
+			if(absoluteF(incArr, failSafe, 0) || absoluteF(incArr, failSafe, 1) || absoluteF(incArr, failSafe, 2)) {
+				score++
+				*failSafe = 1
+				fmt.Print("SCORE \n")
+				fmt.Print(incArr)
+			}
+		}
+
+		*failSafe = 1
+
+		// decArr, decResult := decreaseF(arr, failSafe)
+
+		// fmt.Print("\n DECREASE \n")
+		// if(decResult) {
+		// 	fmt.Print(incArr)
+		// 	fmt.Print(*failSafe)
+
+		// 	if(absoluteF(decArr, failSafe)) {
+		// 		score++
+		// 	}
+		// }
+
+		// *failSafe = 1
+
+		break;
+	}
+
+
+}
+
+func increaseF(arr []int, failsafe *int) ([]int, bool) {
+
+	arrCopy := make ([]int, len(arr))
+	copy(arrCopy, arr)
+
+	for in := 0; in < len(arrCopy)-1; {
+		if arrCopy[in] > arrCopy[in+1] {
+			if(*failsafe != 0) {
+				arrCopy = append(arrCopy[:in], arrCopy[in+1:]...)
+				*failsafe = 0
+			} else {
+				return arrCopy, false
+			}
+		} else {
+			in++
+		}
+	}
 	
+	return arrCopy, true
+}
+
+func decreaseF(arr []int, failsafe *int) ([]int, bool) {
+
+	arrCopy := make ([]int, len(arr))
+	copy(arrCopy, arr)
+
+	for in := 0; in < len(arrCopy)-1; {
+		if arrCopy[in] < arrCopy[in+1] {
+			if(*failsafe != 0) {
+				arrCopy = append(arrCopy[:in], arrCopy[in+1:]...)
+				*failsafe = 0
+			} else {
+				return arrCopy, false
+			}
+		} else {
+			in++
+		}
+	}
+	
+	return arrCopy, true
+}
+
+func absoluteF(arr []int, failsafe int, offset int) bool {
+
+	array := make ([]int, len(arr))
+	copy(array, arr)
+
+	fmt.Print(array)
+	fmt.Print(failsafe)
+
+	fmt.Print("\n")
+
+	for in := 0; in < len(array)-1; {
+		value := math.Abs(float64(array[in] - array[in+1]))
+
+		fmt.Printf(" %d %f \n", in, value)
+
+		if (value > 3 || value == 0) {
+			if(failsafe != 0) {
+				fmt.Printf("Removed: %d\n", array[in])
+				array = append(array[:in+offset], array[in+1+offset:]...)
+				in--
+				failsafe = 0
+			} else {
+				fmt.Print("FAILED")
+				fmt.Print(array)
+				return false
+			}
+		} else {
+			in++
+		}
+	}
+	
+	// fmt.Print(array)
+	return true
 }
