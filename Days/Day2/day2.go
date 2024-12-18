@@ -116,49 +116,49 @@ func absolute(array []int) bool {
 // Part 2 UNRESOLVED
 // ----------------
 func part2() {
-	file := input()
-	arrayValue := twoDArray(file)
+	// file := input()
+	// arrayValue := twoDArray(file)
 
-	score := 0
+	// score := 0
 
-	failSafe := new(int)
-	*failSafe = 1
+	// failSafe := new(int)
+	// *failSafe = 1
 
-	for _, arr := range arrayValue {
+	// for _, arr := range arrayValue {
 
-		incArr, incResult := increaseF(arr, failSafe) 
+	// 	incArr, incResult := increaseF(arr, failSafe) 
 
-		fmt.Print("INCREASE \n")
-		if(incResult) {
-			fmt.Print(incArr)
-			fmt.Print(*failSafe)
+	// 	fmt.Print("INCREASE \n")
+	// 	if(incResult) {
+	// 		fmt.Print(incArr)
+	// 		fmt.Print(*failSafe)
 
-			if(absoluteF(incArr, failSafe, 0) || absoluteF(incArr, failSafe, 1) || absoluteF(incArr, failSafe, 2)) {
-				score++
-				*failSafe = 1
-				fmt.Print("SCORE \n")
-				fmt.Print(incArr)
-			}
-		}
+	// 		if(absoluteF(incArr, failSafe, 0) || absoluteF(incArr, failSafe, 1) || absoluteF(incArr, failSafe, 2)) {
+	// 			score++
+	// 			*failSafe = 1
+	// 			fmt.Print("SCORE \n")
+	// 			fmt.Print(incArr)
+	// 		}
+	// 	}
 
-		*failSafe = 1
+	// 	*failSafe = 1
 
-		// decArr, decResult := decreaseF(arr, failSafe)
+	// 	// decArr, decResult := decreaseF(arr, failSafe)
 
-		// fmt.Print("\n DECREASE \n")
-		// if(decResult) {
-		// 	fmt.Print(incArr)
-		// 	fmt.Print(*failSafe)
+	// 	// fmt.Print("\n DECREASE \n")
+	// 	// if(decResult) {
+	// 	// 	fmt.Print(incArr)
+	// 	// 	fmt.Print(*failSafe)
 
-		// 	if(absoluteF(decArr, failSafe)) {
-		// 		score++
-		// 	}
-		// }
+	// 	// 	if(absoluteF(decArr, failSafe)) {
+	// 	// 		score++
+	// 	// 	}
+	// 	// }
 
-		// *failSafe = 1
+	// 	// *failSafe = 1
 
-		break;
-	}
+	// 	break;
+	// }
 
 
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"aoc/Days/Day1"
 	"aoc/Days/Day2"
+	"aoc/Days/Day3"
 	"fmt"
 	"os"
 	"reflect"
@@ -21,6 +22,7 @@ func main() {
 	funcMap := map[string]interface{} {
 		"Day1": Day1.Run,
 		"Day2": Day2.Run,
+		"Day3": Day3.Run,
 	}
 
 	if fn, exists := funcMap[dayName]; exists {
