@@ -62,5 +62,40 @@ func part1() {
 }
 
 func part2() {
+	score := 0
+
+	// Regex to match do(), mul, and don't()
+	regex := `do\(\)|mul\((\d+),(\d+)\)|don\'t\(\)`
+	re := regexp.MustCompile(regex)
+	intputString := input()
+
+	doPointer := 0
+	dontPointer := -1
+	mulPointer := 0
+
+	pointer := 0
 	
+	for {
+		matchLoc := re.FindStringIndex(intputString[pointer:])
+
+		if matchLoc == nil {
+			break
+		}
+
+		// Determine what matchLoc finds
+	}
+
+	// while loop there is still a regIndex in list of regex
+
+	// if(doIndex < regIndex && regIndex < dontIndex)
+		// score++
+	
+	// if regIndex > donIndex 
+	//	doIndex->next
+	//  dontIndex->next
+
+
+
+
+
 }
